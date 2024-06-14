@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Invoice Generator</title>
+    <script src="https://rawgit.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+<body>
+    <div class="tab-switch">
+        <button class="edit btn-cmn" onclick="switchTab('edit-tab')">Edit Invoice</button>
+        <button class="preview btn-cmn" onclick="switchTab('preview-tab')">Preview</button>
+        <button class="btn-cmn" onclick="generatePDF()">Download PDF</button>
+    </div>
+    <div id="invoice">
+        <h2>Invoice</h2>
+        <div id="invoice-details">
+            <div id="client-details">
+                <h3>Client Information</h3>
+                <!--Client Image Upload -->
+                <input type="file" class="cmn-input" id="client-image" accept="image/*" onchange="previewImage(this)">
+                <img id="client-preview" alt="Client Preview" class="hidden" src="https://via.placeholder.com/200x200">
+
+                <label for="client-name">Client Name</label>
+                <input type="text" class="cmn-input" id="client-name" value="John Doe">
+
+                <label for="client-address">Client Address</label>
+                <input type="text" class="cmn-input" id="client-address" value="123 Main St, Cityville">
+            </div>
+            <div id="invoice-info">
+                <h3>Invoice Information</h3>
+                <label for="invoice-number">Invoice Number</label>
+                <input type="text" class="cmn-input" id="invoice-number" value="12345">
+
+                <label for="invoice-date">Invoice Date</label>
+                <input type="text" class="cmn-input" id="invoice-date" value="2023-11-22">
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Quantity</th>
+                    <th>Unit Price</th>
+                    <th>Total</th>
+                    <th class="btn-p">Action</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-items">
+                <!-- Invoice items will be added dynamically here -->
+            </tbody>
+        </table>
+        <div id="invoice-total">
+            <label for="total-amount">Total Amount</label>
+            <input type="text" class="total-input" id="total-amount" value="0.00" readonly>
+        </div>
+        <button class="btn-add" onclick="addRow()">Add More Item</button>
+    </div>
+   <script src="index.js"></script>
+</body>
+</html>
